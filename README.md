@@ -23,7 +23,7 @@ go mod tidy
 | `CLIENT_SECRET` | ○ | OAuth2 クライアントシークレット |
 | `TOKEN_URL` | ○ | トークンエンドポイント URL |
 | `API_ADDRESS` | ○ | API サーバーアドレス |
-| `STREAM_ADDRESS` | ○ | Stream サーバーアドレス |
+| `STREAM_ADDRESS` | △ | Stream サーバーアドレス ※ gRPC ストリーミングのみ必須 |
 | `SIGNATURE_PUBLIC_KEY` | △ | イベント署名検証用の公開鍵（Base64）※ webhook のみ必須 |
 | `PORT` | | Webhook サーバーポート（デフォルト: `8080`） |
 
@@ -50,6 +50,28 @@ go run cmd/webhook/main.go
 エンドポイント:
 - `POST /events`: イベント受信
 - `GET /healthz`: ヘルスチェック
+
+### Vercel（サーバーレス）
+
+[Vercel](https://vercel.com) にデプロイしてサーバーレス関数としてイベントを受信します。
+
+```bash
+# Vercel CLI のインストール
+npm i -g vercel
+
+# Vercel にログイン・プロジェクトをリンク
+vercel link
+
+# 環境変数を設定
+vercel env add CLIENT_ID
+vercel env add CLIENT_SECRET
+vercel env add TOKEN_URL
+vercel env add API_ADDRESS
+vercel env add SIGNATURE_PUBLIC_KEY
+
+# Vercel へデプロイ
+vercel deploy --prod
+```
 
 ## セキュリティ
 
