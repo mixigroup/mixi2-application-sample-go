@@ -4,7 +4,7 @@ go 1.24.6
 
 require (
 	github.com/kelseyhightower/envconfig v1.4.0
-	github.com/mixigroup/mixi2-application-sdk-go v1.0.0
+	github.com/mixigroup/mixi2-application-sdk-go v1.1.0
 	google.golang.org/grpc v1.78.0
 )
 
